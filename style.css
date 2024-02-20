@@ -261,11 +261,21 @@ display: none;
 
 
 #background-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover; /* Stellt sicher, dass das Video den Container vollständig ausfüllt, ohne seine Proportionen zu verzerren */
+    position: fixed; /* Verändert von 'absolute' zu 'fixed' für eine bessere Anpassung an den Viewport */
+    width: 100vw; /* Vollständige Viewport-Breite */
+    height: 100vh; /* Vollständige Viewport-Höhe */
+    object-fit: cover; /* Beibehalten des Seitenverhältnisses, während das Video den Container ausfüllt */
     z-index: -100;
 }
+@media (max-width: 450px) {
+    #background-video {
+        width: 90vw; /* Setzt die Breite des Videos auf 80% der Viewport-Breite */
+        height: 80vh; /* Passt die Höhe automatisch an, um das Seitenverhältnis beizubehalten */
+        position: absolute; /* Verändert von 'fixed' zu 'absolute' */
+        top: 0; /* Setzt das Video an den Anfang des Bildschirms */
+        left: 50%;
+        transform: translateX(-50%); /* Zentriert das Video horizontal */
+        object-fit: cover;
+    }
+}
+
