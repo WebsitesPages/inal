@@ -262,7 +262,7 @@ display: none;
 
 
 #background-video {
-    position: absolute; /* Verändert von 'absolute' zu 'fixed' für eine bessere Anpassung an den Viewport */
+    position: fixed; /* Verändert von 'absolute' zu 'fixed' für eine bessere Anpassung an den Viewport */
     width: 100vw; /* Vollständige Viewport-Breite */
     height: 100vh; /* Vollständige Viewport-Höhe */
     object-fit: cover; /* Beibehalten des Seitenverhältnisses, während das Video den Container ausfüllt */
