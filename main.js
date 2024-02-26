@@ -20,11 +20,13 @@ document.addEventListener('DOMContentLoaded', function() {
         header.style.opacity = '1';
     }, 3000); // 3000 Millisekunden Verzögerung
 
-    document.addEventListener('scroll', function() {
-        var scrollPosition = window.pageYOffset;
-        var video = document.getElementById('background-video');
-        video.style.top = -(scrollPosition * 2) + 'px'; // Geschwindigkeit des Effekts anpassen
-    });
+    
+
+    
+    
+
+
+
     
 // Funktion zum Registrieren der Event-Listener für einen bestimmten Header
 function registerHeaderEventListeners(header) {
@@ -126,6 +128,29 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+document.addEventListener('scroll', function() {
+    var scrollPosition = window.pageYOffset;
+    var video = document.getElementById('background-video');
+    var screenWidth = window.innerWidth;
+
+    // Setzt die Basisgröße des Videos
+    var baseWidth = 100; // Prozent des Viewports für die Breite
+    var baseHeight = 56.25; // Prozent des Viewports für die Höhe, basierend auf einem 16:9 Seitenverhältnis
+
+    // Skalierungsfaktor: Wie stark das Video pro 100px Scroll-Distanz skaliert wird
+    var scaleFactor = 0.3; // 5% Größenänderung pro 100px Scroll-Distanz
+
+    if (screenWidth > 450) {
+        // Berechnung der neuen Größe basierend auf der Scroll-Position
+        var scaleIncrease = 1 + scrollPosition * scaleFactor / 1000; // Langsameres Skalieren
+
+        // Anwenden der Skalierung auf das Video
+        video.style.transform = 'scale(' + scaleIncrease + ')';
+    } else {
+        // Für Bildschirmbreiten ≤ 450px wird das Video auf seine ursprüngliche Größe zurückgesetzt
+        video.style.transform = 'scale(1)';
+    }
+});
 
 
 
