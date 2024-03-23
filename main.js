@@ -128,26 +128,44 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-window.addEventListener('scroll', function() {
-    // Aktuelle Scroll-Position
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+// window.addEventListener('scroll', function() {
+//     // Aktuelle Scroll-Position
+//     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   
-    // Hole das Video-Element
-    let video = document.getElementById('background-video');
+//     // Hole das Video-Element
+//     let video = document.getElementById('background-video');
   
-    // Bestimme den Skalierungsfaktor basierend auf der Bildschirmbreite
-    let scaleFactor = window.innerWidth > 600 ? 0.0005 : 0.001;
+//     // Bestimme den Skalierungsfaktor basierend auf der Bildschirmbreite
+//     let scaleFactor = window.innerWidth > 600 ? 0.0005 : 0.001;
   
-    // Berechne die Skalierung basierend auf der Scroll-Position
-    let scale = 1 + (scrollTop * scaleFactor);
+//     // Berechne die Skalierung basierend auf der Scroll-Position
+//     let scale = 1 + (scrollTop * scaleFactor);
   
-    // Wende die Skalierung auf das Video an und zentriere es horizontal
-    video.style.transform = `translateX(-50%) scale(${scale})`;
-    video.style.left = '50%';
-  }, false);
+//     // Wende die Skalierung auf das Video an und zentriere es horizontal
+//     video.style.transform = `translateX(-50%) scale(${scale})`;
+//     video.style.left = '50%';
+//   }, false);
   
   
-  
+const textContent = document.querySelector('.text-content');
+
+const observerOptions = {
+    root: null, // verwendet das Browserfenster als Viewport
+    rootMargin: '0px', // Abstand um den Root-View
+    threshold: 0.8 // Sichtbarkeitsschwelle, ab der die Animation startet
+};
+
+const fadeInObserver = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+            // Optional: Wenn Sie möchten, dass die Animation nur einmal abläuft, kommentieren Sie die nächste Zeile aus
+            // observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+fadeInObserver.observe(textContent);
 
 
 });
