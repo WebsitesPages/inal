@@ -128,30 +128,26 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-document.addEventListener('scroll', function() {
-    var scrollPosition = window.pageYOffset;
-    var video = document.getElementById('background-video');
-    var screenWidth = window.innerWidth;
-
-    // Setzt die Basisgröße des Videos
-    var baseWidth = 100; // Prozent des Viewports für die Breite
-    var baseHeight = 56.25; // Prozent des Viewports für die Höhe, basierend auf einem 16:9 Seitenverhältnis
-
-    // Skalierungsfaktor: Wie stark das Video pro 100px Scroll-Distanz skaliert wird
-    var scaleFactor = 0.3; // 5% Größenänderung pro 100px Scroll-Distanz
-
-    if (screenWidth > 450) {
-        // Berechnung der neuen Größe basierend auf der Scroll-Position
-        var scaleIncrease = 1 + scrollPosition * scaleFactor / 1000; // Langsameres Skalieren
-
-        // Anwenden der Skalierung auf das Video
-        video.style.transform = 'scale(' + scaleIncrease + ')';
-    } else {
-        // Für Bildschirmbreiten ≤ 450px wird das Video auf seine ursprüngliche Größe zurückgesetzt
-        video.style.transform = 'scale(1)';
-    }
-});
-
+window.addEventListener('scroll', function() {
+    // Aktuelle Scroll-Position
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  
+    // Hole das Video-Element
+    let video = document.getElementById('background-video');
+  
+    // Bestimme den Skalierungsfaktor basierend auf der Bildschirmbreite
+    let scaleFactor = window.innerWidth > 600 ? 0.0005 : 0.001;
+  
+    // Berechne die Skalierung basierend auf der Scroll-Position
+    let scale = 1 + (scrollTop * scaleFactor);
+  
+    // Wende die Skalierung auf das Video an und zentriere es horizontal
+    video.style.transform = `translateX(-50%) scale(${scale})`;
+    video.style.left = '50%';
+  }, false);
+  
+  
+  
 
 
 });

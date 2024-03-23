@@ -256,27 +256,51 @@ cursor: pointer;
 display: none;
 }
 
+
 .banner1{
     height: 300vh;
 }
 
+/* CSS-Regeln für den Video-Container */
+.containervideo {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Höhe des Video-Containers, passt die Höhe des Videos an */
+    z-index: -1; /* Stellt sicher, dass das Video hinter dem Inhalt bleibt */
+}
 
 #background-video {
-    position: fixed; /* Verändert von 'absolute' zu 'fixed' für eine bessere Anpassung an den Viewport */
-    width: 100vw; /* Vollständige Viewport-Breite */
-    height: 100vh; /* Vollständige Viewport-Höhe */
-    object-fit: cover; /* Beibehalten des Seitenverhältnisses, während das Video den Container ausfüllt */
-    z-index: -100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Stellt sicher, dass das Video den Container vollständig bedeckt */
 }
-@media (max-width: 450px) {
+
+.parallax {
+    height: 300px; /* Setzen Sie eine explizite Höhe, um Sichtbarkeit zu gewährleisten */
+    background-image: url('Motor.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1; /* Stellen Sie sicher, dass dies nicht hinter anderen Elementen liegt */
+}
+
+
+/* Stellen Sie sicher, dass der Rest des Inhalts (falls vorhanden) ebenfalls korrekt im Dokumentfluss positioniert wird */
+
+
+@media (max-width: 600px) {
     #background-video {
-        width: 90vw; /* Setzt die Breite des Videos auf 80% der Viewport-Breite */
-        height: 80vh; /* Passt die Höhe automatisch an, um das Seitenverhältnis beizubehalten */
-        position: absolute; /* Verändert von 'fixed' zu 'absolute' */
-        top: 0; /* Setzt das Video an den Anfang des Bildschirms */
+        width: 80vw; /* Korrektur der Breite */
+        height: 80vh; /* Automatische Höhenanpassung */
+        position: absolute; /* Korrektur der Positionierung */
+        top: 0;
         left: 50%;
-        transform: translateX(-50%); /* Zentriert das Video horizontal */
-        object-fit: cover;
+        transform: translateX(-50%); /* Zentrierung des Videos */
     }
 }
+
 
