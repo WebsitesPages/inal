@@ -401,10 +401,13 @@ display: none;
 .image-content img {
     max-width: 100%;
     height: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* Schatten hinzufügen */
+    margin: 2rem; /* Optionaler Abstand um das Bild */
 }
 
+
 .btn2 {
-    background-color: #d9534f; /* Farbe des Buttons */
+    background-color:  #c10000; /* Farbe des Buttons */
     color: white;
     text-decoration: none;
     padding: 0.8rem 2rem;
@@ -412,7 +415,10 @@ display: none;
     margin-top: 1rem;
     border-radius: 2px;
 }
-
+.btn2:hover{
+    background-color: #9d0202;
+    transition: .5s;
+}
 /* Media Query für kleinere Bildschirme */
 @media (max-width: 768px) {
     .section-content {
@@ -430,3 +436,57 @@ display: none;
     }
 }
 
+@media (max-width: 500px) {
+    .text-content {
+        width: 100%; /* Breite des Textinhalts auf 80% des Bildschirms setzen */
+        margin: 0 auto; /* Zentriert den Textinhalt */
+        padding: 1rem; /* Etwas Abstand hinzufügen */
+        text-align: center; /* Text mittig ausrichten */
+    }
+
+    .btn {
+        width: auto; /* Die Breite des Buttons zurücksetzen */
+        padding: 0.8rem 2rem; /* Button-Padding anpassen */
+    }
+
+    .custom-section{
+        padding: 0;
+        width: 100%;
+
+    }
+ 
+
+    .custom-section .text-content2 {
+        padding: 10px; /* Setzt einen gleichmäßigen Innenabstand */
+        margin-left: 10px; /* Fügt einen linken Rand hinzu */
+        margin-right: 10px; /* Fügt einen rechten Rand hinzu */padding: 1rem;
+    }
+
+    .custom-section .image-content img {
+        width: 100%; /* Stellt die Bildbreite auf 100% ein */
+        height: auto; /* Erhält das Seitenverhältnis des Bildes */
+        margin: 0 auto; /* Zentriert das Bild, falls notwendig */
+        display: block; /* Stellt sicher, dass das Bild als Block-Element behandelt wird */
+    }
+
+    .custom-section .section-content, .custom-section .image-content {
+        width: 100%; /* Stellt sicher, dass der Container die volle Breite einnimmt */
+        padding: 10px; /* Entfernt Padding, das die Breite beeinflussen könnte */
+        margin: 0; /* Entfernt Margin */
+    }
+
+    .custom-section .image-content img {
+        width: 100%; /* Bildbreite auf 100% */
+        height: auto; /* Beibehalten des Seitenverhältnisses */
+        display: block; /* Behandelt das Bild als Block-Element */
+    }
+    .custom-section .btn2 {
+        width: auto; /* Setzt die Breite des Buttons auf den Inhalt */
+        padding: 0.8rem 2rem; /* Beibehalten eines angemessenen Padding für den Text */
+        display: inline-block; /* Erlaubt dem Button, nur so viel Platz wie nötig einzunehmen */
+        margin: 10px 0; /* Fügt oben und unten einen kleinen Abstand hinzu, zentriert ihn aber nicht horizontal */
+    }
+    .custom-section p{
+        padding-left: 10px;
+    }
+}
