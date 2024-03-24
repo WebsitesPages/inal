@@ -148,6 +148,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   
   
 const textContent = document.querySelector('.text-content');
+const btn2 = document.querySelector('.btn2');
+const icon = document.querySelector('.icon-container');
+
 
 const observerOptions = {
     root: null, // verwendet das Browserfenster als Viewport
@@ -166,7 +169,7 @@ const fadeInObserver = new IntersectionObserver(function(entries, observer) {
 }, observerOptions);
 
 fadeInObserver.observe(textContent);
-
-
+fadeInObserver.observe(btn2);
+fadeInObserver.observe(icon);
 });
 

@@ -344,18 +344,26 @@ display: none;
     position: relative;
     z-index: 2;
 }
+
+
+
 /* Anfangszustand der Animation */
-.text-content {
+.text-content,
+.btn2,
+.icon-container  {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
 /* Zielzustand der Animation */
-.text-content.fade-in {
+.fade-in
+ {
     opacity: 1;
     transform: translateY(0);
 }
+
+
 .btn {
     display: inline-block;
     padding: 15px 20px;
@@ -488,5 +496,36 @@ display: none;
     }
     .custom-section p{
         padding-left: 10px;
+    }
+}
+
+
+.icon-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
+    padding: 10rem 0;
+}
+
+.icon {
+    flex-basis: 30%; /* Jedes Icon nimmt ungefähr 30% der Containerbreite ein */
+    margin: 10px;
+}
+
+.icon img {
+    width: 100px; /* Stellen Sie die Größe der Bilder nach Bedarf ein */
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .icon {
+        flex-basis: 100%; /* Jedes Icon nimmt die volle Breite ein */
+    }
+    
+    /* Zentriert das mittlere Icon, wenn es unter die anderen rutscht */
+    .icon:nth-child(2) {
+        order: 3; /* Setzt das mittlere Icon an das Ende */
+        margin: 20px 0; /* Fügt oben und unten einen Abstand hinzu */
     }
 }
