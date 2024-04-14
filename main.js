@@ -150,7 +150,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const textContent = document.querySelector('.text-content');
 const btn2 = document.querySelector('.btn2');
 const icon = document.querySelector('.icon-container');
-
+const textElements = document.querySelectorAll('.text-content2 p');
 
 const observerOptions = {
     root: null, // verwendet das Browserfenster als Viewport
@@ -171,5 +171,67 @@ const fadeInObserver = new IntersectionObserver(function(entries, observer) {
 fadeInObserver.observe(textContent);
 fadeInObserver.observe(btn2);
 fadeInObserver.observe(icon);
+
+const textObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        let delay = Array.from(textElements).indexOf(entry.target) * 0.2; // Jedes Element bekommt eine um 0.2 Sekunden höhere Verzögerung
+        entry.target.style.animationDelay = `${delay}s`;
+        entry.target.classList.add('slide-up');
+        observer.unobserve(entry.target);  // Optional: Beobachtung stoppen nach der ersten Animation
+      }
+    });
+  }, observerOptions);
+
+  textElements.forEach(element => {
+    textObserver.observe(element);
+  });
+
+
+
+// Zäher für Box
+let duration = 2000;  // Dauer der Zählung in Millisekunden
+
+// Erzeuge einen neuen Intersection Observer
+let observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {  // Wenn das Element sichtbar ist
+            let numberElement = entry.target;
+            let boxElement = numberElement.closest('.box'); // Finde das nächste Elternelement mit der Klasse 'box'
+            boxElement.style.opacity = '1'; // Ändere die Opazität auf 1, um die Box sichtbar zu machen
+            let targetNumber = Number(numberElement.getAttribute('data-target'));  // Hole die Zielnummer aus dem data-target Attribut
+            let increment = targetNumber / (duration / 10);  // Increment pro 10 ms
+            let counter = 0;
+            let counterInterval = setInterval(() => {
+                if (counter >= targetNumber) {
+                    clearInterval(counterInterval);
+                    numberElement.innerText = targetNumber + ' +';  // Hinzufügen des "+"-Zeichens
+                } else {
+                    counter += increment;
+                    numberElement.innerText = Math.floor(counter) + ' +';  // Hinzufügen des "+"-Zeichens während der Zählung
+                }
+            }, 10);  // Aktualisierung alle 10 Millisekunden
+            observer.unobserve(numberElement);  // Beende die Beobachtung für dieses Element
+        }
+    });
+}, observerOptions);  // Starte, wenn mindestens 10% des Elements sichtbar sind
+
+// Beginne die Beobachtung für alle Elemente mit der Klasse 'number'
+let numberElements = document.querySelectorAll('.number');
+numberElements.forEach((numberElement) => {
+    observer.observe(numberElement);
+});
+
+
+
+// Loggt die aktuelle Breite des Browserfensters in die Konsole
+console.log("Die aktuelle Fensterbreite beträgt: " + window.innerWidth + " Pixel");
+
+// Wenn du die Breite bei jeder Größenänderung des Fensters überwachen möchtest:
+window.addEventListener('resize', () => {
+    console.log("Die geänderte Fensterbreite beträgt: " + window.innerWidth + " Pixel");
+});
+
+
 });
 

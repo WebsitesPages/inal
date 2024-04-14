@@ -385,7 +385,7 @@ display: none;
     align-items: center;
     justify-content: space-between;
     padding: 4rem;
-    background-color: #f5f5f5; /* oder eine andere Farbe Ihrer Wahl */
+    background-color: #f5f5f5;
 }
 
 .section-content {
@@ -396,21 +396,68 @@ display: none;
     width: 100%;
 }
 
+
+
 .text-content2 {
-    flex: 1;
     padding: 2rem;
+    margin-left: 4rem;
+    margin-right: 2rem;
+    flex: 1.1;
 }
 
+.text-content2 h2 {
+    color: #333; /* dunkle Farbe für Überschriften */
+    margin-bottom: 1rem; /* Abstand unter der Überschrift */
+    font-size: 1.9em; /* größere Schrift für Überschriften */
+}
+
+.text-content2 p {
+    font-size: 1.3em; /* leicht größere Schrift für bessere Lesbarkeit */
+    color: #666; /* dunkelgrau für Text */
+    line-height: 1.6; /* mehr Zeilenhöhe für bessere Lesbarkeit */
+    margin-bottom: 0.5rem; /* Abstand zwischen Listenelementen */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* sanfte Transition für Animation */
+    
+}
+.text-content2 p::before {
+    content: '▶'; /* Sie können auch ein passendes Icon hier verwenden */
+    color: #c10000; /* Farbe des Icons/Bullet-Points */
+    font-size: 1em; /* Größe des Icons/Bullet-Points */
+    margin-right: 10px; /* Abstand zwischen Icon und Text */
+    vertical-align: middle; /* Zentriert das Icon vertikal zum Text */
+    cursor: pointer;
+}
+.text-content2 p:hover {
+    background-color: #ececec; /* heller Hintergrund beim Hover */
+    cursor: pointer; /* zeigt an, dass das Element interaktiv ist */
+    transform: translateX(10px); /* bewegt den Text leicht nach rechts */
+}
+
+
+@media (max-width: 768px) {
+    .text-content2 {
+        padding: 1rem; /* weniger Padding auf kleineren Geräten */
+    }
+
+    .text-content2 p {
+        font-size: 1.3em; /* kleinere Schriftgröße auf mobilen Geräten */
+    }
+}
+
+
+
 .image-content {
-    flex: 1;
+    flex: 1;  /* Verkleinern des Bildbereichs */
     padding: 2rem;
+    display: flex;
+    align-items: center; /* Zentrieren des Bildes vertikal */
+    justify-content: center; /* Zentrieren des Bildes horizontal */
 }
 
 .image-content img {
     max-width: 100%;
     height: auto;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* Schatten hinzufügen */
-    margin: 2rem; /* Optionaler Abstand um das Bild */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); /* Schatten hinzufügen */
 }
 
 
@@ -428,7 +475,7 @@ display: none;
     transition: .5s;
 }
 /* Media Query für kleinere Bildschirme */
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
     .section-content {
         flex-direction: column;
     }
@@ -529,3 +576,69 @@ display: none;
         margin: 20px 0; /* Fügt oben und unten einen Abstand hinzu */
     }
 }
+
+.banner2 {
+    width: 100%;
+    min-height: 60vh;
+    color: black;
+    font-family: 'Bebas Neue', sans-serif;
+}
+.container2 {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 30px 0;
+    padding-top: 20vh;
+}
+
+.container2 .box {
+    flex: 1 0 200px;  /* Basisbreite der Box */
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    line-height: 1.2; /* Verringert den Abstand zwischen den Zeilen */
+    opacity: 0;
+    transition: opacity 3s ease-out;
+}
+
+@media screen and (max-width: 768px) {  /* Änderung bei Geräten mit einer Bildschirmbreite von maximal 768 Pixel */
+    .container2 {
+        flex-direction: column;  /* Boxen untereinander */
+        padding-top: 5vh;
+    }
+
+    .container2 .box {
+        margin-bottom: -40px;  /* Zusätzlicher Abstand zwischen den Boxen */
+    }
+}
+
+
+
+.number {
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: -20px; /* Näher zusammenrücken der Texte */
+}
+
+.lower-text {
+    font-size: 25px;
+}
+
+@keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .slide-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 1s ease forwards;
+  }
+  
